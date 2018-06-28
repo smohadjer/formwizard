@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Multi-step SPA Form (prototype)</title>
+    </head>
+    <body>
+        <div class="app">
+            <form class="app__form" method="post" action="./">
+                <fieldset>
+                    <label for="name">Name:</label>
+                    <input name="name" value="" />
+                </fieldset>
+                <input type="submit" />
+            </form>
+            <div class="app__nav" hidden>
+                <button class="app__back">Back</button>
+                <button class="app__next">Next</button>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
