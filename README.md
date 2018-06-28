@@ -1,6 +1,4 @@
 # formwizard
-A multi-step form implemented as a single page app
-
 This is a prototype for a multi-step (and multi-substeps) localizable form built as a single page app. It addresses form initialization, re-population (from saved data), client-side validation, navigation (sequence-based or random), and the decision tree support. 
 
 # Features
