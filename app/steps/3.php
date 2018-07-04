@@ -11,5 +11,8 @@
 		<input type="checkbox" id="confirm" name="confirm" required />
 		<label for="confirm">I agree that above information is accurate!</label>
 	</div>
-	<button>Submit</button>
+	<div class="buttons">
+		<a href="form.php?step=2">Back</a>
+		<button>Submit</button>
+	</div>
 </form>
