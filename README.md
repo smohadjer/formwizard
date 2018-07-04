@@ -27,4 +27,5 @@ Navigating through form steps by default is sequential, meaning that you can onl
 
 # Phase II
 - Support for sub-steps
+- Handling server-side validation errors. If some form fields show error messages inserted by server, javascript should remove these errors as soon as the user corrects them, possibly by calling a server-side validator endpoint using ajax to figure out if the new value is valid or not.
 
