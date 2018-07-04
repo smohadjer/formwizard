@@ -1,0 +1,34 @@
+form input {
+	padding: 5px;
+}
+
+form input:invalid {
+	border: solid 1px salmon;
+}
+
+form label.required::after {
+	content: "*";
+	color: #999;
+	margin-left: 3px;
+}
+
+form fieldset {
+	padding: 20px;
+	border-radius: 5px;
+	border: dashed #999 1px;
+}
+
+form button {
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin-top: 10px;
+	font-size: 1.5em;
+}
+
+form label {
+	margin-right: 10px;
+}
+
+form div + div {
+	margin-top: 10px;
+}
