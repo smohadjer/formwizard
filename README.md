@@ -4,7 +4,7 @@ This is a boilerplate for building multi-step forms. It is implemented in away t
 Navigating through form steps by default is sequential, meaning that you can only access steps whose previous steps have been completed. However you can bypass this restriction by setting data-navigation="random" on the form element.
 
 # Demo
-- https://smohadjer.github.io/formwizard/index.html
+- http://saeidmohadjer.com/formwizard/form.php
 
 # Requirements
 - It should work even if javascript is disabled.
