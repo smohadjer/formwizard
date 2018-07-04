@@ -1,7 +1,11 @@
+<?php
+	$_SESSION["name"] = $_POST['name'];
+	$_SESSION["email"] = $_POST['email'];
+?>
 <form method="post" action="form.php?step=3">
 	<div>
-		<label class="required" for="name">Phone:</label>
-		<input id="name" name="name" type="number" required />
+		<label class="required" for="phone">Phone:</label>
+		<input id="phone" name="phone" type="tel" required />
 	</div>
 	<button>Next</button>
 </form>

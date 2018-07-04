@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,11 +14,10 @@
 		<div class="formwizard">
 			<div class="formwizard__navigation"></div>
 			<?php
-				$step = '';
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
 					include('steps/' . $step . '.php');
-				}	
+				}
 			?>
 		</div>
 		<script src="form.js"></script>

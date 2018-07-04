@@ -19,9 +19,9 @@ form fieldset {
 }
 
 form button {
-	padding: 10px 20px;
+	padding: 5px 20px;
 	border-radius: 5px;
-	margin-top: 10px;
+	margin-top: 20px;
 	font-size: 1.5em;
 }
 
@@ -31,4 +31,9 @@ form label {
 
 form div + div {
 	margin-top: 10px;
+}
+
+.review {
+	background: #ddd;
+	padding: 20px;
 }
