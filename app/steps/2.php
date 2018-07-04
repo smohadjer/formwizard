@@ -1,6 +1,11 @@
 <?php
-	$_SESSION["name"] = $_POST['name'];
-	$_SESSION["email"] = $_POST['email'];
+	if ( isset($_POST['name']) ) {
+		$_SESSION["name"] = $_POST['name'];
+	}
+
+	if ( isset($_POST['email']) ) {
+		$_SESSION["email"] = $_POST['email'];
+	}
 ?>
 <form method="post" action="form.php?step=3">
 	<div>
