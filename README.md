@@ -28,4 +28,5 @@ Navigating through form steps by default is sequential, meaning that you can onl
 # Phase II
 - Support for sub-steps
 - Handling server-side validation errors. If some form fields show error messages inserted by server, javascript should remove these errors as soon as the user corrects them, possibly by calling a server-side validator endpoint using ajax to figure out if the new value is valid or not.
+- Add caching of steps on client side so when user clicks next button in a step, we don't need to wait for markup to be fetched from server via ajax. For steps with decision-tree we skip caching as what markup is returned depends on choices user makes in current step. Whether a step has decision-tree or not should be indicated using a data attribute on step container.
 
