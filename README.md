@@ -8,8 +8,9 @@ This boilerplate shows you how to break a large form into a multi-step/multi-sub
 
 # Requirements
 - It should work even if javascript is disabled.
-- It should work on IE11
-- It should be possible to add/remove steps without changes to javascript
+- It should work on IE11.
+- It should NOT break browser back button.
+- It should be possible to add/remove steps without changes to javascript.
 - Form should have a navigation that allows accessing form steps. 
 - A form step is only accessible if previous steps have been submitted.
 
