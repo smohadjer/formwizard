@@ -1,7 +1,7 @@
 <?php
 	$_SESSION["phone"] = $_POST['phone'];
 ?>
-<form method="post" action="confirmation.html">
+<form method="post" action="confirmation.php">
 	<div class="review">
 		<p><?php echo 'Name: ' . $_SESSION['name']; ?></p>
 		<p><?php echo 'Email: ' . $_SESSION['email']; ?></p>
