@@ -14,7 +14,7 @@
 		<label for="confirm">I agree that above information is accurate!</label>
 	</div>
 	<div class="buttons">
-		<a href="form.php?step=2">Back</a>
+		<a class="back" href="form.php?step=2">Back</a>
 		<button>Submit</button>
 	</div>
 </form>

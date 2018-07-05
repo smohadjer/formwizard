@@ -13,7 +13,7 @@
 		<input id="phone" name="phone" type="tel" required value="<?php echo $_SESSION['phone']; ?>" />
 	</div>
 	<div class="buttons">
-		<a href="form.php?step=1">Back</a>
+		<a class="back" href="form.php?step=1">Back</a>
 		<button>Next</button>
 	</div>
 </form>

@@ -13,8 +13,7 @@
 		}
 	}
 
-	function ajaxSuccess () {
-		const request = this;
+	function ajaxSuccess (request, url) {
 		if (request.status >= 200 && request.status < 400) {
 			const newForm = request.response.querySelector('form');
 			if (newForm) {
@@ -22,6 +21,8 @@
 				const parent = oldForm.parentNode;
 				oldForm.parentNode.removeChild(oldForm);
 				parent.appendChild(newForm);
+
+				updateBrowserAddressBar(url);
 			}
 		} else {
 			// We reached our target server, but it returned an error
@@ -30,10 +31,18 @@
 
 	function ajaxSend(form) {
 		const request = new XMLHttpRequest();
+		const url = form.getAttribute('action');
+
 		request.responseType = 'document';
-		request.open('POST', form.getAttribute('action'), true);
-		request.onload = ajaxSuccess;
+		request.open('POST', url, true);
+		request.onload = function() {
+			ajaxSuccess(this, url);
+		}
 		request.send(new FormData(form));
+	}
+
+	function updateBrowserAddressBar(url) {
+		window.history.pushState({}, '', url);
 	}
 
 	ready(function() {
@@ -44,5 +53,16 @@
 				ajaxSend(event.target);
 			}
 		});
+
+		formWizard.addEventListener('click', function(event) {
+			if (event.target.classList.contains('back')) {
+				event.preventDefault();
+				window.history.go(-1);
+			}
+		});
+
+		window.onpopstate = function(event) {
+			console.log("location: " + document.location);
+		};
 	});
 })();
