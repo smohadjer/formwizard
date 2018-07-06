@@ -2,7 +2,7 @@
 	'use strict';
 
 	const html = document.querySelector('html');
-	html.classList.remove('no-js');
+
 	html.classList.add('js');
 
 	function ready(fn) {
@@ -13,15 +13,47 @@
 		}
 	}
 
-	function ajaxSuccess (request, url) {
+	ready(init);
+
+	function init() {
+		const formWizard = document.querySelector('.formwizard');
+		const form = formWizard.querySelector('form');
+		const url = form.getAttribute('action');
+		const currentUrl = 'form.php?step=1';
+
+		formWizard.addEventListener('submit', function(event) {
+			if (event.target.classList.contains('ajax')) {
+				event.preventDefault();
+				ajaxSend(event.target);
+			}
+		});
+
+		formWizard.addEventListener('click', function(event) {
+			if (event.target.classList.contains('back')) {
+				event.preventDefault();
+				window.history.go(-1);
+			}
+		});
+
+		window.onpopstate = function(event) {
+			if (event.state) {
+				ajaxSendGet(event.state.url);
+			}
+		};
+
+		window.history.replaceState({url: currentUrl}, '', currentUrl);
+	}
+
+	function ajaxSuccess (request, url, type) {
 		if (request.status >= 200 && request.status < 400) {
 			const newForm = request.response.querySelector('form');
 
-			console.log(newForm.innerHTML);
-
 			if (newForm) {
 				updateView(newForm);
-				updateBrowserAddressBar(url, newForm);
+
+				if (type === 'post') {
+					updateBrowserAddressBar(url);
+				}
 			}
 		} else {
 			// We reached our target server, but it returned an error
@@ -41,57 +73,26 @@
 		const url = form.getAttribute('action');
 		const data = new FormData(form);
 
-		for(var pair of data.entries()) {
-			console.log(pair[0]+ ', '+ pair[1]);
-		}
-
 		request.responseType = 'document';
 		request.open('POST', url, true);
 		request.onload = function() {
-			ajaxSuccess(this, url);
+			ajaxSuccess(this, url, 'post');
 		}
 		request.send(data);
 	}
 
-	function updateBrowserAddressBar(url, markup) {
-		console.log(markup);
-		window.history.pushState({
-			url: url,
-			view: markup.outerHTML
-		}, '', url);
+	function ajaxSendGet(url) {
+		const request = new XMLHttpRequest();
+
+		request.responseType = 'document';
+		request.open('GET', url, true);
+		request.onload = function() {
+			ajaxSuccess(this, url, 'get');
+		}
+		request.send();
 	}
 
-	ready(function() {
-		const formWizard = document.querySelector('.formwizard');
-		const form = formWizard.querySelector('form');
-		const url = form.getAttribute('action');
-
-		formWizard.addEventListener('submit', function(event) {
-			if (event.target.classList.contains('ajax')) {
-				event.preventDefault();
-				ajaxSend(event.target);
-			}
-		});
-
-		formWizard.addEventListener('click', function(event) {
-			if (event.target.classList.contains('back')) {
-				event.preventDefault();
-				window.history.go(-1);
-			}
-		});
-
-		window.onpopstate = function(event) {
-			if (event.state) {
-				console.log(event.state);
-				//update page
-				var wrapper= document.createElement('div');
-				wrapper.innerHTML= event.state.view;
-				const newForm = wrapper.firstChild;
-
-				updateView(newForm);
-			}
-		};
-
-		updateBrowserAddressBar('form.php?step=1', form);
-	});
+	function updateBrowserAddressBar(url) {
+		window.history.pushState({url: url}, '', url);
+	}
 })();
