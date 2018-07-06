@@ -22,7 +22,3 @@ This boilerplate shows you how to break a large form into a multi-step structure
 
 # Dependencies
 No dependencies. The demo page uses PHP for server-side scripting, but you are free to use any language that runs on your server.
-
-# Phase II
-- Handling server-side validation errors. If some form fields show error messages inserted by server, javascript should remove these errors as soon as the user corrects them, possibly by calling a server-side validator endpoint using ajax to figure out if the new value is valid or not.
-
