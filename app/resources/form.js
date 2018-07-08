@@ -77,7 +77,7 @@
 		request.open('POST', url, true);
 		request.onload = function() {
 			ajaxSuccess(this, url, 'post');
-		}
+		};
 		request.send(data);
 	}
 
@@ -88,7 +88,7 @@
 		request.open('GET', url, true);
 		request.onload = function() {
 			ajaxSuccess(this, url, 'get');
-		}
+		};
 		request.send();
 	}
 
