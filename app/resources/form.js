@@ -19,7 +19,7 @@
 		const formWizard = document.querySelector('.formwizard');
 		const form = formWizard.querySelector('form');
 		const url = form.getAttribute('action');
-		const currentUrl = 'form.php?step=1';
+		const currentUrl = 'form.php' + location.search;
 
 		formWizard.addEventListener('submit', function(event) {
 			if (event.target.classList.contains('ajax')) {
