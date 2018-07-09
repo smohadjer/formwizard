@@ -1,5 +1,5 @@
 <form method="post" action="confirmation.php">
-	<?
+	<?php
 		if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
 			echo '<p class="error">There is an error on the form!</p>';
 		}
