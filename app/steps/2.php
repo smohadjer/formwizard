@@ -1,7 +1,7 @@
 <form class="ajax" method="post" action="xt_form.php?step=2">
 	<div>
 		<label class="required" for="phone">Phone:</label>
-		<input id="phone" name="phone" type="tel" required 
+		<input id="phone" name="phone" type="tel" required="required" 
             value="<?= isset($_SESSION['phone']) ? $_SESSION['phone'] : '' ?>" />
 	</div>
 	<div class="buttons">

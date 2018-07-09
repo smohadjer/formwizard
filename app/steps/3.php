@@ -5,7 +5,7 @@
 		<p><?php echo 'Phone: ' . $_SESSION['phone']; ?></p>
 	</div>
 	<div>
-		<input type="checkbox" id="confirm" name="confirm" required />
+		<input type="checkbox" id="confirm" name="confirm" required="required" />
 		<label for="confirm">I agree that above information is accurate!</label>
 	</div>
 	<div class="buttons">
