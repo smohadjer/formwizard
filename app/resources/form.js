@@ -23,15 +23,13 @@
 
 	function addEventListeners() {
 		const formWizard = document.querySelector('.formwizard');
-		const form = formWizard.querySelector('form.ajax');
-		const url = form.getAttribute('action');
 
 		formWizard.addEventListener('submit', function(event) {
 			if (event.target.classList.contains('ajax')) {
 				event.preventDefault();
 
 				const form = event.target;
-				const url = event.target.getAttribute('action');
+				const url = form.getAttribute('action');
 				const data = new FormData(form);
 
 				ajaxSend('POST', url, data);
