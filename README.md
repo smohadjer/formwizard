@@ -11,14 +11,11 @@ This boilerplate shows you how to break a large form into a multi-step structure
 - It should NOT break browser back button 
 - It should be possible to add or remove form steps without changes to javascript.
 - If javascript is enabled, no page reload should happen.
-- Form should have a navigation that allows accessing form steps. 
+- Form navigation should allows access to previously completed steps
+- No use of jQuery or other frameworks.
+- No required stylesheets.
 - Support for IE11.
-
-# Features
-- No use of jQuery or any 3rd party javascript rameworks.
-- No styling.
-- Client-side validation is done by [HTML5 validation attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation) and without javascript. 
-- Random or sequential access to form steps via form navigation
+- Client-side validation is done by [HTML5 validation attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation). 
 
 # Dependencies
 No dependencies. The demo page uses PHP for server-side scripting, but you are free to use any language that runs on your server.
