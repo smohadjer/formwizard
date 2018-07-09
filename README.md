@@ -1,4 +1,4 @@
-# formWizard | A Boilerplate for multi-step forms
+# formWizard | A Boilerplate for multi-step SPA forms
 This is a boilerplate for building multi-step forms as a single page app. The approach used allows the forms to work even if javascript is disabled, but if javascript is enabled steps are fetched and posted via ajax allowing user to go back and forward through steps without a page reload. 
 
 This boilerplate shows you how to break a large form into a multi-step structure that works with or without js, that can support list/add item pattern, review pattern, decision tree all from a centralized code base (so you don't repeat code on both server-side and client-side). Navigating through form steps by default is sequential, meaning that you can only access steps whose previous steps have been completed. However you can bypass this restriction by setting data-navigation="random" on the form element.
