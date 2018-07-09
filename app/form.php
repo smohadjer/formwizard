@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Formwizard | A boilerplate for multi-step forms</title>
-		<link rel="stylesheet" href="resources/form.css" />
+		<link rel="stylesheet" href="resources/formwizard.css" />
 	</head>
 	<body>
 		<div class="formwizard">
@@ -20,7 +20,7 @@
 				}
 			?>
 		</div>
-		<script src="resources/form.js"></script>
+		<script src="resources/formwizard.js"></script>
 		<script>
 			(function() {
 				'use strict';
