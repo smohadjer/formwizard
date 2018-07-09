@@ -7,12 +7,12 @@ This boilerplate shows you how to break a large form into a multi-step structure
 - http://saeidmohadjer.com/formwizard/form.php?step=1
 
 # Requirements
-- It should not break if javascript is not enabled.
-- It should work on IE11.
-- It should not break browser back button.
-- It should be possible to add and remove steps without any changes to javascript.
-- Form should have a navigation that allows accessing form steps. 
+- Form should still work if javascript is disabled or if it throws an error.
+- It should NOT break browser back button 
+- It should be possible to add or remove form steps without changes to javascript.
 - If javascript is enabled, no page reload should happen.
+- Form should have a navigation that allows accessing form steps. 
+- Support for IE11.
 
 # Features
 - No use of jQuery or any 3rd party javascript rameworks.
