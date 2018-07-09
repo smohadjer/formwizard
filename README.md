@@ -6,16 +6,16 @@ This boilerplate shows you how to break a large form into a multi-step structure
 # Demo
 - http://saeidmohadjer.com/formwizard/form.php?step=1
 
-# Requirements
-- Form should still work if javascript is disabled or if it throws an error.
-- It should NOT break browser back button 
-- It should be possible to add or remove form steps without changes to javascript.
-- If javascript is enabled, no page reload should happen.
-- Form navigation should allows access to previously completed steps
-- No use of jQuery or other frameworks.
-- No required stylesheets.
-- Support for IE11.
-- Client-side validation is done by [HTML5 validation attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation). 
+# Features
+- Form remains functional even if javascript is disabled or it throws errors
+- It does NOT break browser back button 
+- Form steps can be added or removed without changes to javascript
+- If javascript is enabled, no page reload happens (SPA)
+- Form navigation allows access to previously completed steps at any time
+- No use of jQuery or other frameworks
+- No required stylesheets
+- Support for IE11
+- Client-side validation using [HTML5 validation attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation)
 
 # Dependencies
-No dependencies. The demo page uses PHP for server-side scripting, but you are free to use any language that runs on your server.
+No dependencies. The demo page uses PHP for server-side scripting, but you are free to use any server-side language.
