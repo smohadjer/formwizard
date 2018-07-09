@@ -1,16 +1,8 @@
-<?php
-	if ( isset($_POST['name']) ) {
-		$_SESSION["name"] = $_POST['name'];
-	}
-
-	if ( isset($_POST['email']) ) {
-		$_SESSION["email"] = $_POST['email'];
-	}
-?>
-<form class="ajax" method="post" action="form.php?step=3">
+<form class="ajax" method="post" action="xt_form.php?step=2">
 	<div>
 		<label class="required" for="phone">Phone:</label>
-		<input id="phone" name="phone" type="tel" required value="<?php echo $_SESSION['phone']; ?>" />
+		<input id="phone" name="phone" type="tel" required 
+            value="<?= isset($_SESSION['phone']) ? $_SESSION['phone'] : '' ?>" />
 	</div>
 	<div class="buttons">
 		<a class="back" href="form.php?step=1">Back</a>
