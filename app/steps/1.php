@@ -1,11 +1,13 @@
-<form class="ajax" method="post" action="form.php?step=2">
+<form class="ajax" method="post" action="xt_form.php?step=1">
 	<div>
 		<label class="required" for="name">Name:</label>
-		<input id="name" name="name" required value="<?php echo $_SESSION['name']; ?>" />
+		<input id="name" name="name" required 
+            value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : '' ?>" />
 	</div>
 	<div>
 		<label class="required" for="email">Email:</label>
-		<input id="email" name="email" type="email" required value="<?php echo $_SESSION['email']; ?>" />
+		<input id="email" name="email" type="email" required 
+            value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>" />
 	</div>
 	<div class="buttons">
 		<button>Next</button>

@@ -1,8 +1,3 @@
-<?php
-	if ( isset($_POST['phone']) ) {
-		$_SESSION["phone"] = $_POST['phone'];
-	}
-?>
 <form method="post" action="confirmation.php">
 	<div class="review">
 		<p><?php echo 'Name: ' . $_SESSION['name']; ?></p>
