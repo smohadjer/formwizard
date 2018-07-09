@@ -21,5 +21,26 @@
 			?>
 		</div>
 		<script src="resources/form.js"></script>
+		<script>
+			(function() {
+				'use strict';
+
+				const html = document.querySelector('html');
+
+				html.classList.add('js');
+
+				function ready(fn) {
+					if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+						fn();
+					} else {
+						document.addEventListener('DOMContentLoaded', fn);
+					}
+				}
+
+				ready(function() {
+					const formWizard = new FormWizard();
+				});
+			})();
+		</script>
 	</body>
 </html>

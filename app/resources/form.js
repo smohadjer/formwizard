@@ -1,30 +1,15 @@
-(function() {
-	'use strict';
-
-	const html = document.querySelector('html');
-
-	html.classList.add('js');
-
-	function ready(fn) {
-		if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
-			fn();
-		} else {
-			document.addEventListener('DOMContentLoaded', fn);
-		}
-	}
-
-	ready(init);
-
-	function init() {
-		addEventListeners();
+class FormWizard {
+	constructor() {
+		this.elm = document.querySelector('.formwizard');
+		this.addEventListeners();
 
 		window.history.replaceState({url: location.href}, '', location.href);
 	}
 
-	function addEventListeners() {
-		const formWizard = document.querySelector('.formwizard');
+	addEventListeners() {
+		const self = this;
 
-		formWizard.addEventListener('submit', function(event) {
+		self.elm.addEventListener('submit', function(event) {
 			if (event.target.classList.contains('ajax')) {
 				event.preventDefault();
 
@@ -32,11 +17,11 @@
 				const url = form.getAttribute('action');
 				const data = new FormData(form);
 
-				ajaxSend('POST', url, data);
+				self.ajaxSend('POST', url, data);
 			}
 		});
 
-		formWizard.addEventListener('click', function(event) {
+		self.elm.addEventListener('click', function(event) {
 			if (event.target.classList.contains('back')) {
 				event.preventDefault();
 				window.history.go(-1);
@@ -45,29 +30,32 @@
 
 		window.onpopstate = function(event) {
 			if (event.state) {
-				ajaxSend('GET', event.state.url);
+				self.ajaxSend('GET', event.state.url);
 			}
 		};
 	}
 
-	function ajaxSend(method, url, data) {
+	ajaxSend(method, url, data) {
+		const self = this;
 		const request = new XMLHttpRequest();
 
 		request.responseType = 'document';
 		request.open(method, url, true);
 		request.onload = function() {
-			ajaxSuccess(this, method);
+			self.ajaxSuccess(this, method);
 		};
 		request.send(data);
 	}
 
-	function ajaxSuccess (request, method) {
+	ajaxSuccess (request, method) {
+		const self = this;
+
 		if (request.status >= 200 && request.status < 400) {
 			const newForm = request.response.querySelector('form');
 			const url = request.responseURL;
 
 			if (newForm) {
-				updateView(newForm);
+				self.updateView(newForm);
 
 				if (method === 'POST') {
 					window.history.pushState({url: url}, '', url);
@@ -78,11 +66,11 @@
 		}
 	}
 
-	function updateView(newForm) {
+	updateView(newForm) {
 		const oldForm = document.querySelector('.formwizard form');
 		const parent = oldForm.parentNode;
 
 		oldForm.parentNode.removeChild(oldForm);
 		parent.appendChild(newForm);
 	}
-})();
+}
