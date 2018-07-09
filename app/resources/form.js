@@ -16,15 +16,25 @@
 	ready(init);
 
 	function init() {
+		addEventListeners();
+
+		window.history.replaceState({url: location.href}, '', location.href);
+	}
+
+	function addEventListeners() {
 		const formWizard = document.querySelector('.formwizard');
-		const form = formWizard.querySelector('form');
+		const form = formWizard.querySelector('form.ajax');
 		const url = form.getAttribute('action');
-		const currentUrl = 'form.php' + location.search;
 
 		formWizard.addEventListener('submit', function(event) {
 			if (event.target.classList.contains('ajax')) {
 				event.preventDefault();
-				ajaxSend(event.target);
+
+				const form = event.target;
+				const url = event.target.getAttribute('action');
+				const data = new FormData(form);
+
+				ajaxSend('POST', url, data);
 			}
 		});
 
@@ -37,22 +47,32 @@
 
 		window.onpopstate = function(event) {
 			if (event.state) {
-				ajaxSendGet(event.state.url);
+				ajaxSend('GET', event.state.url);
 			}
 		};
-
-		window.history.replaceState({url: currentUrl}, '', currentUrl);
 	}
 
-	function ajaxSuccess (request, url, type) {
+	function ajaxSend(method, url, data) {
+		const request = new XMLHttpRequest();
+
+		request.responseType = 'document';
+		request.open(method, url, true);
+		request.onload = function() {
+			ajaxSuccess(this, method);
+		};
+		request.send(data);
+	}
+
+	function ajaxSuccess (request, method) {
 		if (request.status >= 200 && request.status < 400) {
 			const newForm = request.response.querySelector('form');
+			const url = request.responseURL;
 
 			if (newForm) {
 				updateView(newForm);
 
-				if (type === 'post') {
-					updateBrowserAddressBar(url);
+				if (method === 'POST') {
+					window.history.pushState({url: url}, '', url);
 				}
 			}
 		} else {
@@ -66,33 +86,5 @@
 
 		oldForm.parentNode.removeChild(oldForm);
 		parent.appendChild(newForm);
-	}
-
-	function ajaxSend(form) {
-		const request = new XMLHttpRequest();
-		const url = form.getAttribute('action');
-		const data = new FormData(form);
-
-		request.responseType = 'document';
-		request.open('POST', url, true);
-		request.onload = function() {
-			ajaxSuccess(this, url, 'post');
-		};
-		request.send(data);
-	}
-
-	function ajaxSendGet(url) {
-		const request = new XMLHttpRequest();
-
-		request.responseType = 'document';
-		request.open('GET', url, true);
-		request.onload = function() {
-			ajaxSuccess(this, url, 'get');
-		};
-		request.send();
-	}
-
-	function updateBrowserAddressBar(url) {
-		window.history.pushState({url: url}, '', url);
 	}
 })();

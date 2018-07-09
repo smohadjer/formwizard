@@ -2,8 +2,17 @@ form input {
 	padding: 5px;
 }
 
+form .error {
+	color: red;
+}
+
 form input:invalid {
 	border: solid 1px salmon;
+}
+
+form input[type=text],
+form input[type=email] {
+	min-width: 220px;
 }
 
 form label.required::after {

@@ -14,9 +14,6 @@
 		<div class="formwizard">
 			<div class="formwizard__navigation"></div>
 			<?php
-                if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
-                    echo "<p>There is an error on the form!</p>";
-                }
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
 					include('steps/' . $step . '.php');

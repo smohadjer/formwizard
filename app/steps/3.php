@@ -1,4 +1,9 @@
 <form method="post" action="confirmation.php">
+	<?
+		if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
+			echo '<p class="error">There is an error on the form!</p>';
+		}
+	?>
 	<div class="review">
 		<p><?php echo 'Name: ' . $_SESSION['name']; ?></p>
 		<p><?php echo 'Email: ' . $_SESSION['email']; ?></p>
