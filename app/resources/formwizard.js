@@ -1,3 +1,5 @@
+//version 0.0.1
+
 class FormWizard {
 	constructor() {
 		this.elm = document.querySelector('.formwizard');
