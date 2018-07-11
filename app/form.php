@@ -8,7 +8,57 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Formwizard | A boilerplate for multi-step forms</title>
-		<link rel="stylesheet" href="resources/formwizard.css" />
+		<!-- below styles are not required -->
+		<style>
+			form input {
+				padding: 5px;
+			}
+
+			form .error {
+				color: red;
+			}
+
+			form input:invalid {
+				border: solid 1px salmon;
+			}
+
+			form input[type=text],
+			form input[type=email] {
+				min-width: 220px;
+			}
+
+			form label.required::after {
+				content: "*";
+				color: #999;
+				margin-left: 3px;
+			}
+
+			form fieldset {
+				padding: 20px;
+				border-radius: 5px;
+				border: dashed #999 1px;
+			}
+
+			form button, .buttons a {
+				padding: 5px 20px;
+				border-radius: 5px;
+				margin-top: 20px;
+				font-size: 1.5em;
+			}
+
+			form label {
+				margin-right: 10px;
+			}
+
+			form div + div {
+				margin-top: 10px;
+			}
+
+			.review {
+				background: #ddd;
+				padding: 20px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="formwizard">
@@ -20,7 +70,7 @@
 				}
 			?>
 		</div>
-		<script src="resources/formwizard.js"></script>
+		<script src="formwizard.js"></script>
 		<script>
 			(function() {
 				'use strict';
