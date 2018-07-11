@@ -1,12 +1,3 @@
-/*
- * @name          formwizard.js
- * @version       0.0.2
- * @author        Saeid Mohadjer
- * @repo		  https://github.com/smohadjer/formwizard
- *
- * Licensed under the MIT License
- */
-
 class FormWizard {
 	constructor(options) {
 		this.element = options.element;

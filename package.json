@@ -1,0 +1,23 @@
+{
+	"name": "formwizard",
+	"version": "0.0.2",
+	"description": "This is a boilerplate for building multi-step forms as a single page app.",
+	"main": "formwizard.js",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint": "^5.1.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/smohadjer/formwizard.git"
+	},
+	"author": "Saeid Mohadjer",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/smohadjer/formwizard/issues"
+	},
+	"homepage": "https://github.com/smohadjer/formwizard#readme"
+}
