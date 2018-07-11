@@ -38,7 +38,12 @@
 				}
 
 				ready(function() {
-					const formWizard = new FormWizard();
+					const formWizard = new FormWizard({
+						element: document.querySelector('.formwizard'),
+						ajaxFormClass: 'fromwizard__ajaxForm',
+						stepClass: 'formwizard__step',
+						backButtonClass: 'fromwizard__back'
+					});
 				});
 			})();
 		</script>

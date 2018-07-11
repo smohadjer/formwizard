@@ -1,4 +1,4 @@
-<form method="post" action="confirmation.php">
+<form class="formwizard__step" method="post" action="confirmation.php">
 	<?php
 		if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
 			echo '<p class="error">There is an error on the form!</p>';
@@ -14,7 +14,7 @@
 		<label for="confirm">I agree that above information is accurate!</label>
 	</div>
 	<div class="buttons">
-		<a class="back" href="form.php?step=2">Back</a>
+		<a class="fromwizard__back" href="form.php?step=2">Back</a>
 		<button>Submit</button>
 	</div>
 </form>

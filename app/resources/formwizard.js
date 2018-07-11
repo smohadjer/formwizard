@@ -1,18 +1,30 @@
-//version 0.0.1
+/*
+ * @name          formwizard.js
+ * @version       0.0.2
+ * @author        Saeid Mohadjer
+ * @repo		  https://github.com/smohadjer/formwizard
+ *
+ * Licensed under the MIT License
+ */
 
 class FormWizard {
-	constructor() {
-		this.elm = document.querySelector('.formwizard');
-		this.addEventListeners();
+	constructor(options) {
+		this.element = options.element;
+		this.ajaxFormClass = options.ajaxFormClass;
+		this.stepClass = options.stepClass;
+		this.backButtonClass = options.backButtonClass;
 
-		window.history.replaceState({url: location.href}, '', location.href);
+		this.addEventListeners();
+		window.history.replaceState({
+			url: location.href
+		}, '', location.href);
 	}
 
 	addEventListeners() {
 		const self = this;
 
-		self.elm.addEventListener('submit', function(event) {
-			if (event.target.classList.contains('ajax')) {
+		self.element.addEventListener('submit', function(event) {
+			if (event.target.classList.contains(self.ajaxFormClass)) {
 				event.preventDefault();
 
 				const form = event.target;
@@ -23,8 +35,8 @@ class FormWizard {
 			}
 		});
 
-		self.elm.addEventListener('click', function(event) {
-			if (event.target.classList.contains('back')) {
+		self.element.addEventListener('click', function(event) {
+			if (event.target.classList.contains(self.backButtonClass)) {
 				event.preventDefault();
 				window.history.go(-1);
 			}
@@ -53,14 +65,16 @@ class FormWizard {
 		const self = this;
 
 		if (request.status >= 200 && request.status < 400) {
-			const newForm = request.response.querySelector('form');
+			const newForm = request.response.querySelector(`.${self.stepClass}`);
 			const url = request.responseURL;
 
 			if (newForm) {
 				self.updateView(newForm);
 
 				if (method === 'POST') {
-					window.history.pushState({url: url}, '', url);
+					window.history.pushState({
+						url: url
+					}, '', url);
 				}
 			}
 		} else {
@@ -69,7 +83,8 @@ class FormWizard {
 	}
 
 	updateView(newForm) {
-		const oldForm = document.querySelector('.formwizard form');
+		const self = this;
+		const oldForm = document.querySelector(`.${self.stepClass}`);
 		const parent = oldForm.parentNode;
 
 		oldForm.parentNode.removeChild(oldForm);

@@ -1,4 +1,4 @@
-<form class="ajax" method="post" action="xt_form.php?step=1">
+<form class="fromwizard__ajaxForm formwizard__step" method="post" action="xt_form.php?step=1">
 	<?php
 		if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
 			echo '<p class="error">There is an error on the form!</p>';
