@@ -2,6 +2,11 @@ body {
 	margin: 0 20px;
 }
 
+footer {
+	border-top: solid 1px #666;
+	margin-top: 40px;
+}
+
 @media screen and (min-width: 900px) {
 	body {
 		margin: 0 auto;
@@ -62,7 +67,6 @@ form div + div {
 }
 
 .buttons {
-	border-top: dotted 1px #999;
 	padding-top: 20px;
 	margin-top: 40px;
 	display: flex;
@@ -76,12 +80,10 @@ form div + div {
 
 .formwizard {
 	width: 100%;
-	margin: 0 auto;
-	box-sizing: border-box;
+	margin: 40px 0 20px;
 	overflow: hidden;
 	position: relative;
-	min-height: 500px;
-	margin-top: 20px;
+	min-height: 260px;
 }
 
 .formwizard__step {

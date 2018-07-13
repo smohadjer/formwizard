@@ -13,7 +13,6 @@
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
 		<div class="formwizard">
-			<div class="formwizard__navigation"></div>
 			<?php
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
@@ -21,6 +20,9 @@
 				}
 			?>
 		</div>
+		<footer>
+			<p>To learn more visit <a href="https://github.com/smohadjer/formwizard/blob/master/README.md">repo on Github</a></p>
+		</footer>
 		<script src="formwizard.js"></script>
 		<script>
 			(function() {
