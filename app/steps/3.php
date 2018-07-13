@@ -1,4 +1,5 @@
 <form class="formwizard__step" method="post" action="confirmation.php">
+	<h2>Step 3</h2>
 	<?php
 		if ( isset($_SESSION["error"]) && $_SESSION["error"] ) {
 			echo '<p class="error">There is an error on the form!</p>';
