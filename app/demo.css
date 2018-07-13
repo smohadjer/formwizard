@@ -87,7 +87,7 @@ form div + div {
 	margin: 40px 0 20px;
 	overflow: hidden;
 	position: relative;
-	min-height: 300px;
+	min-height: 340px;
 }
 
 .formwizard__step {
