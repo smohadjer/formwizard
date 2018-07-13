@@ -126,9 +126,12 @@
 						const newForm = options.newForm;
 						const direction = (options.oldStep < options.newStep) ? 'forward' : 'backward';
 
-						oldForm.addEventListener('transitionend', function(event) {
+						oldForm.addEventListener('transitionend', removeOldForm);
+
+						function removeOldForm(event) {
 							event.target.remove();
-						});
+							oldForm.removeEventListener('transitionend', removeOldForm);
+						}
 
 						if (direction === 'forward') {
 							oldForm.classList.add('outLeft');
@@ -137,9 +140,16 @@
 							// if newForm does't exist in page append it otherwise update it
 							this.element.appendChild(newForm);
 
+							// triggering reflow otherwise removing class won't trigger animation
+							void newForm.offsetWidth;
+
+							newForm.classList.remove('outRight');
+
+							/*
 							window.setTimeout(function() {
 								newForm.classList.remove('outRight');
 							}, 10);
+							*/
 						} else {
 							oldForm.classList.add('outRight');
 							newForm.classList.add('outLeft');
@@ -147,9 +157,15 @@
 							// if newForm does't exist in page append it otherwise update it
 							this.element.appendChild(newForm);
 
+							// triggering reflow otherwise removing class won't trigger animation
+							void newForm.offsetWidth;
+							newForm.classList.remove('outLeft');
+
+							/*
 							window.setTimeout(function() {
 								newForm.classList.remove('outLeft');
 							}, 10);
+							*/
 						}
 					};
 
