@@ -1,0 +1,94 @@
+form input {
+	padding: 5px;
+	font-size: 16px;
+}
+
+form .error {
+	color: red;
+}
+
+form input:invalid {
+	border: solid 1px salmon;
+}
+
+form input[type=text],
+form input[type=email] {
+	min-width: 200px;
+}
+
+form label.required::after {
+	content: "*";
+	color: #999;
+	margin-left: 3px;
+}
+
+form fieldset {
+	padding: 20px;
+	border-radius: 5px;
+	border: dashed #999 1px;
+}
+
+form button, .buttons a {
+	font-size: 20px;
+}
+
+form label {
+	margin-right: 10px;
+}
+
+form div + div {
+	margin-top: 10px;
+}
+
+.review {
+	margin-bottom: 20px;
+	background: #ccc;
+	padding: 20px;
+}
+
+.review p {
+	margin: 0 0 10px;
+}
+
+.buttons {
+	border-top: dotted 1px #999;
+	padding-top: 20px;
+	margin-top: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* so if only one button exists it shows on right side */
+.buttons button {
+	margin-left: auto;
+}
+
+body {
+	max-width: 1024px;
+	margin: 0 auto;
+}
+
+.formwizard {
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	min-height: 500px;
+	margin-top: 20px;
+}
+
+.formwizard__step {
+	width: 100%;
+	position: absolute;
+	transition: left .5s cubic-bezier(.07,.54,.41,.99);
+	left: 0;
+}
+
+.formwizard__step.outLeft {
+	left: -100%;
+}
+
+.formwizard__step.outRight {
+	left: 100%;
+}

@@ -6,7 +6,7 @@
 	?>
 	<div>
 		<label class="required" for="name">Name:</label>
-		<input type="text" id="name" name="name" required="required" placeholder="Name should be longer than two letters!"
+		<input type="text" id="name" name="name" required="required" placeholder="longer than two letters"
 			value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : '' ?>" />
 	</div>
 	<div>
