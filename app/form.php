@@ -24,7 +24,7 @@
 
 			form input[type=text],
 			form input[type=email] {
-				min-width: 220px;
+				min-width: 200px;
 			}
 
 			form label.required::after {
@@ -55,8 +55,41 @@
 			}
 
 			.review {
+				border-bottom: solid 2px #fff;
+				margin-bottom: 20px;
+				padding-bottom: 10px;
+			}
+
+			.review p {
+				margin: 0 0 10px;
+			}
+
+			.formwizard {
+				width: 320px;
+				padding: 20px;
+				box-sizing: border-box;
+				overflow: hidden;
+				position: relative;
+				min-height: 500px;
+			}
+
+			.formwizard__step {
+				box-sizing: border-box;
 				background: #ddd;
 				padding: 20px;
+				width: 100%;
+				position: absolute;
+				transition: left .75s cubic-bezier(.07,.54,.41,.99);
+				left: 0;
+				top: 0;
+			}
+
+			.formwizard__step.outLeft {
+				left: -340px;
+			}
+
+			.formwizard__step.outRight {
+				left: 340px;
 			}
 		</style>
 	</head>
@@ -88,11 +121,44 @@
 				}
 
 				ready(function() {
+					const myCallback = function(options) {
+						const oldForm = options.oldForm;
+						const newForm = options.newForm;
+						const direction = (options.oldStep < options.newStep) ? 'forward' : 'backward';
+
+						oldForm.addEventListener('transitionend', function(event) {
+							event.target.remove();
+						});
+
+						if (direction === 'forward') {
+							oldForm.classList.add('outLeft');
+							newForm.classList.add('outRight');
+
+							// if newForm does't exist in page append it otherwise update it
+							this.element.appendChild(newForm);
+
+							window.setTimeout(function() {
+								newForm.classList.remove('outRight');
+							}, 10);
+						} else {
+							oldForm.classList.add('outRight');
+							newForm.classList.add('outLeft');
+
+							// if newForm does't exist in page append it otherwise update it
+							this.element.appendChild(newForm);
+
+							window.setTimeout(function() {
+								newForm.classList.remove('outLeft');
+							}, 10);
+						}
+					};
+
 					const formWizard = new FormWizard({
 						element: document.querySelector('.formwizard'),
 						ajaxFormClass: 'fromwizard__ajaxForm',
 						stepClass: 'formwizard__step',
-						backButtonClass: 'fromwizard__back'
+						backButtonClass: 'fromwizard__back',
+						callbackUpdateView: myCallback
 					});
 				});
 			})();

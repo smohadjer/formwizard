@@ -4,11 +4,19 @@ class FormWizard {
 		this.ajaxFormClass = options.ajaxFormClass;
 		this.stepClass = options.stepClass;
 		this.backButtonClass = options.backButtonClass;
-
+		this.callbackUpdateView = options.callbackUpdateView;
+		this.currentStep = this.getStep();
 		this.addEventListeners();
+
 		window.history.replaceState({
 			url: location.href
 		}, '', location.href);
+	}
+
+	getStep() {
+		const urlParams = new URLSearchParams(window.location.search);
+
+		return parseInt(urlParams.get('step'));
 	}
 
 	addEventListeners() {
@@ -60,13 +68,13 @@ class FormWizard {
 			const url = request.responseURL;
 
 			if (newForm) {
-				self.updateView(newForm);
-
 				if (method === 'POST') {
 					window.history.pushState({
 						url: url
 					}, '', url);
 				}
+
+				self.updateView(newForm);
 			}
 		} else {
 			// We reached our target server, but it returned an error
@@ -75,10 +83,25 @@ class FormWizard {
 
 	updateView(newForm) {
 		const self = this;
-		const oldForm = document.querySelector(`.${self.stepClass}`);
-		const parent = oldForm.parentNode;
+		//const forms = self.element.querySelectorAll(`.${self.stepClass}`);
+		//const oldForm = forms[self.currentStep - 1];
+		const oldForm = self.element.querySelector(`.${self.stepClass}`);
+		const newStep = self.getStep();
+		const options = {
+			oldForm: oldForm,
+			newForm: newForm,
+			oldStep: self.currentStep,
+			newStep: newStep
+		};
 
-		oldForm.parentNode.removeChild(oldForm);
-		parent.appendChild(newForm);
+		//update page
+		if (typeof self.callbackUpdateView === 'function') {
+			self.callbackUpdateView(options);
+		} else {
+			options.oldForm.remove();
+			self.element.appendChild(newForm);
+		}
+
+		self.currentStep = newStep;
 	}
 }
