@@ -51,7 +51,7 @@ function postData() {
 			//server has found error and returned the same step with errors in markup
 			replace form with new form in response.
 		} else {
-			updateView(step, response);
+			updateView(step, response, true);
 		}
 	}
 }
