@@ -4,6 +4,7 @@ Formwizard workflow
 * Get step count from url and store it in currentStep variable.
 * Read the total steps from data-total-steps and add placeholder form elements to DOM for all missing steps.
 
+Possible Scenarios:
 * A) User clicks on back link
 * B) User clicks on next button
 * C) User clicks on browser back or forward button
