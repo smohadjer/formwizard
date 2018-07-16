@@ -1,13 +1,13 @@
 Formwizard workflow
 
-User comes to form.php?step=2, js is enabled
-Get step count from url and store it in currentStep variable.
-Read the total steps from data-total-steps and add placeholder form elements to DOM for all missing steps.
+* User comes to form.php?step=2, js is enabled
+* Get step count from url and store it in currentStep variable.
+* Read the total steps from data-total-steps and add placeholder form elements to DOM for all missing steps.
 
-A) User clicks on back link
-B) User clicks on next button
-C) User clicks on browser back or forward button
-D) User clicks on a link in form navigation
+* A) User clicks on back link
+* B) User clicks on next button
+* C) User clicks on browser back or forward button
+* D) User clicks on a link in form navigation
 
 ---------
 
