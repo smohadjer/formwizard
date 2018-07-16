@@ -43,7 +43,7 @@ fetchView(step);
 
 ```javascript
 function postData() {
-	request.open('POST', 'form.getAttribute('action'), true);
+	request.open('POST', 'form.getAttribute("action")', true);
 	request.onload = function() {
 		var response = this;
 		var step = response.querySelector('form').getAttribute('data-step');
