@@ -20,7 +20,7 @@ fetchView(step);
 
 B) User clicks on next button
 ```javascript
-postData()
+postData();
 ```
 
 C) User clicks on browser back or forward button
@@ -61,7 +61,9 @@ function fetchView(step) {
 
 function updateView(step, response) {
 	replace form with index of step -1 with form in response
-	goToSlide(step);
+	if (slider) {
+		goToSlide(step);
+	}
 	currentStep = step;
 }
 ```
