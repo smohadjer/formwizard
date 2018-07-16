@@ -19,15 +19,8 @@ fetchView(step);
 ```
 
 B) User clicks on next button
-- Submit form data with ajax POST to server
-- When response is received set step to data-step on form in response.
 ```javascript
-if (step === currentStep) {
-	//server has found error and returned the same step with errors in markup
-	replace form with new form in response.
-} else {
-	updateView(step, response);
-}
+postData()
 ```
 
 C) User clicks on browser back or forward button
@@ -49,8 +42,16 @@ fetchView(step);
 ---------
 
 ```javascript
-function postView() {
+function postData() {
+	submit form data with ajax POST to server
+	When response is received set step to data-step on form in response.
 
+	if (step === currentStep) {
+		//server has found error and returned the same step with errors in markup
+		replace form with new form in response.
+	} else {
+		updateView(step, response);
+	}
 }
 
 function fetchView(step) {
