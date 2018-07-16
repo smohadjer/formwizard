@@ -43,20 +43,24 @@ fetchView(step);
 
 ```javascript
 function postData() {
-	submit form data with ajax POST to server
-	When response is received set step to data-step on form in response.
-
-	if (step === currentStep) {
-		//server has found error and returned the same step with errors in markup
-		replace form with new form in response.
-	} else {
-		updateView(step, response);
+	request.open('POST', 'form.getAttribute('action'), true);
+	request.onload = function() {
+		var response = this;
+		var step = response.querySelector('form').getAttribute('data-step');
+		if (step === currentStep) {
+			//server has found error and returned the same step with errors in markup
+			replace form with new form in response.
+		} else {
+			updateView(step, response);
+		}
 	}
 }
 
 function fetchView(step) {
-	fetch form.php?step=step using ajax (GET)
-	when response is received invoke updateView(step, response);
+	request.open('GET', 'form.php?step='+step, true);
+	request.onload = function() {
+		updateView(step, response);
+	}
 }
 
 function updateView(step, response) {
