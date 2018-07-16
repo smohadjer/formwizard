@@ -15,7 +15,7 @@ Possible Scenarios:
 A) User clicks on back link
 ```javascript
 var step = currentStep - 1;
-fetchView(step);
+fetchView(step, true);
 ```
 
 B) User clicks on next button
@@ -28,7 +28,7 @@ C) User clicks on browser back or forward button
 window.onpopstate = function(event) {
 	if (event.state) {
 		step = event.state.step;
-		fetchView(step);
+		fetchView(step, false);
 	}
 };
 ```
@@ -36,7 +36,7 @@ window.onpopstate = function(event) {
 D) User clicks on a link in form navigation
 ```javascript
 var step = get step parameter from href of link;
-fetchView(step);
+fetchView(step, true);
 ```
 
 ---------
@@ -56,19 +56,21 @@ function postData() {
 	}
 }
 
-function fetchView(step) {
+function fetchView(step, updateHistory) {
 	request.open('GET', 'form.php?step='+step, true);
 	request.onload = function() {
-		updateView(step, response);
+		updateView(step, response, updateHistory);
 	}
 }
 
-function updateView(step, response) {
+function updateView(step, response, updateHistory) {
 	replace form with index of step -1 with form in response
 	if (slider) {
 		goToSlide(step);
 	}
 	currentStep = step;
-	history.pushState();
+	if (updateHistory) {
+	    history.pushState();
+	}
 }
 ```
