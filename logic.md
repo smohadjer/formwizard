@@ -69,5 +69,6 @@ function updateView(step, response) {
 		goToSlide(step);
 	}
 	currentStep = step;
+	history.pushState();
 }
 ```
