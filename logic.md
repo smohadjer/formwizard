@@ -65,6 +65,7 @@ function fetchView(step, updateHistory) {
 
 function updateView(step, response, updateHistory) {
 	replace form with index of step -1 with form in response
+	remove class "current-step" from all forms and put it on current form
 	if (slider) {
 		goToSlide(step);
 	}
