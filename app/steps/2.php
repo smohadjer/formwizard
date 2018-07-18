@@ -1,3 +1,4 @@
+<?php include('nav.inc.php'); ?>
 <form class="fromwizard__ajaxForm formwizard__step" method="post" action="xt_form.php?step=2">
 	<h2>Step 2</h2>
 	<?php

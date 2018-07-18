@@ -13,7 +13,6 @@
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
-		<?php include('nav.inc.php'); ?>
 		<div class="formwizard">
 			<?php
 				if ( isset($_GET["step"]) ) {
