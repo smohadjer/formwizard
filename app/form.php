@@ -17,6 +17,9 @@
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
 					include('steps/' . $step . '.php');
+				} else {
+					header('Location: form.php?step=1');
+					exit;
 				}
 			?>
 		</div>
