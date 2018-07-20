@@ -82,25 +82,6 @@ form div + div {
 	margin-left: auto;
 }
 
-.formwizard {
-	width: 100%;
+.formwizard__forms {
 	margin: 40px 0 20px;
-	overflow: hidden;
-	position: relative;
-	min-height: 340px;
-}
-
-.formwizard__step {
-	width: 100%;
-	position: absolute;
-	transition: left .5s cubic-bezier(.07,.54,.41,.99);
-	left: 0;
-}
-
-.formwizard__step.outLeft {
-	left: -100%;
-}
-
-.formwizard__step.outRight {
-	left: 100%;
 }

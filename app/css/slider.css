@@ -1,0 +1,16 @@
+.js.formwizard {
+	width: 100%;
+	overflow: hidden;
+}
+
+.js.formwizard .formwizard__forms {
+	display: flex;
+	position: relative;
+	left: 0;
+	transition: left .5s cubic-bezier(.07,.54,.41,.99);
+}
+
+.js.formwizard .formwizard__step {
+	flex-shrink: 0;
+	width: 100%;
+}
