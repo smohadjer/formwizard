@@ -1,3 +1,5 @@
+//version 0.0.2
+
 class FormWizard {
 	constructor(options) {
 		this.element = options.element;
