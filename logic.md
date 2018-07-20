@@ -10,7 +10,7 @@ User comes to form.php?step=2 and javascript is enabled. Possible scenarios are:
 ```javascript
 init() {
 	this.currentStep = get value of step query in url;
-	this.stepsCount =  this.element.getAttribute('data-steps-count);
+	this.stepsCount =  this.element.getAttribute('data-steps-count');
 
 	//Add placeholder for each step to the dom
 	let placeholder = '<form class="formwizard__step"></form>';
