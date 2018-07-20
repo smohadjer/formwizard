@@ -45,13 +45,13 @@ fetchView(step, true);
 function postData() {
 	request.open('POST', 'form.getAttribute("action")', true);
 	request.onload = function() {
-		var response = this;
-		var step = response.querySelector('form').getAttribute('data-step');
+		var request = this;
+		get step from request.responseURL;
 		if (step === currentStep) {
 			//server has found error and returned the same step with errors in markup
 			replace form with new form in response.
 		} else {
-			updateView(step, response, true);
+			updateView(step, request.response, true);
 		}
 	}
 }
@@ -59,12 +59,13 @@ function postData() {
 function fetchView(step, updateHistory) {
 	request.open('GET', 'form.php?step='+step, true);
 	request.onload = function() {
-		updateView(step, response, updateHistory);
+		var request = this;
+		updateView(step, request.response, updateHistory);
 	}
 }
 
 function updateView(step, response, updateHistory) {
-	replace form with index of step -1 with form in response
+	replace form with index of currentstep-1 with form in response
 	remove class "current-step" from all forms and put it on current form
 	if (slider) {
 		goToSlide(step);
