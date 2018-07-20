@@ -1,4 +1,4 @@
-//version 0.0.2
+//version 0.0.3
 
 class FormWizard {
 	constructor(options) {
@@ -8,8 +8,11 @@ class FormWizard {
 		this.stepClass = options.stepClass;
 		this.backButtonClass = options.backButtonClass;
 		this.callbackUpdateView = options.callbackUpdateView;
+		this.callbackInit = options.callbackInit;
 		this.currentStep = this.getStep();
 		this.stepsCount = parseInt(this.element.getAttribute('data-steps-count'));
+
+		this.element.classList.add('js');
 
 		this.initDOM();
 		this.addEventListeners();
@@ -18,6 +21,10 @@ class FormWizard {
 			step: this.currentStep,
 			url: location.href
 		}, '', location.href);
+
+		if (typeof this.callbackInit === 'function') {
+			this.callbackInit();
+		}
 	}
 
 	getStep() {
@@ -118,21 +125,20 @@ class FormWizard {
 			}
 		};
 		request.send(data);
-
 	}
 
 	updateView(step, request, updateHistory) {
 		const self = this;
+		const steps = self.forms.querySelectorAll('.' + self.stepClass);
+		const newChild = request.response.querySelector(`.${self.stepClass}`);
+
+		self.forms.replaceChild(newChild, steps[step-1]);
 
 		if (typeof self.callbackUpdateView === 'function') {
-			self.callbackUpdateView(options);
+			self.callbackUpdateView({
+				step: step
+			});
 		} else {
-			//replace form with index of currentstep-1 with form in response
-			let steps = self.forms.querySelectorAll('.' + self.stepClass);
-			const newChild = request.response.querySelector(`.${self.stepClass}`);
-
-			self.forms.replaceChild(newChild, steps[step-1]);
-
 			if (step !== self.currentStep) {
 				steps[self.currentStep-1].setAttribute('hidden', 'hidden');
 				steps[step-1].removeAttribute('hidden');

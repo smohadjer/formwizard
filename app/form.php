@@ -9,6 +9,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Formwizard | A boilerplate for multi-step forms</title>
 		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/slider.css" />
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
@@ -48,8 +49,9 @@
 						element: document.querySelector('.formwizard'),
 						ajaxFormClass: 'fromwizard__ajaxForm',
 						stepClass: 'formwizard__step',
-						backButtonClass: 'fromwizard__back'
-						//callbackUpdateView: slider
+						backButtonClass: 'fromwizard__back',
+						callbackInit: slider.init,
+						callbackUpdateView: slider.slide
 					});
 				});
 			})();
