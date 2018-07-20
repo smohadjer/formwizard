@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
-		<div class="formwizard">
+		<div class="formwizard" data-steps-count="3">
 			<?php
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
