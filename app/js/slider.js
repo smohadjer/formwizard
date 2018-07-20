@@ -2,24 +2,33 @@ const slider = {};
 
 slider.init = function() {
 	'use strict';
-	
-	this.element.querySelectorAll('.formwizard__step').forEach(function(elm) {
-		elm.removeAttribute('hidden');
+
+	const self = this;
+
+	slider.element = self.element.querySelector('.formwizard__forms');
+
+	self.element.querySelectorAll('.formwizard__step').forEach(function(element) {
+		element.removeAttribute('hidden');
 	});
 
-	if (this.currentStep !== 1) {
-		slider.slide.call(this, {
-			step: this.currentStep
+	if (self.currentStep !== 1) {
+		slider.slide.call(self, {
+			step: self.currentStep
 		});
 	}
+
+	window.addEventListener('resize', function(event) {
+		slider.slide.call(self, {
+			step: self.getStep()
+		});
+	});
 };
 
 slider.slide = function(options) {
 	'use strict';
 
-	const slider = this.element.querySelector('.formwizard__forms');
-	const width = slider.offsetWidth;
+	const width = slider.element.offsetWidth;
 	const left = 0 - width * (options.step-1);
 
-	slider.style.left = left + 'px';
+	slider.element.style.left = left + 'px';
 };
