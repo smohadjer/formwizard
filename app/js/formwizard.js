@@ -70,8 +70,10 @@ class FormWizard {
 		self.element.addEventListener('click', function(event) {
 			if (event.target.classList.contains(self.backButtonClass)) {
 				event.preventDefault();
-				const step = self.currentStep - 1;
+
 				const url = event.target.getAttribute('href');
+				const step = self.getQueryString('step', url);
+
 				self.fetchView(step, url, true);
 			}
 		});

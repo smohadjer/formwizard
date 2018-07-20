@@ -77,6 +77,10 @@ form div + div {
 	justify-content: space-between;
 }
 
+.buttons a + a {
+	margin-left: 10px;
+}
+
 /* so if only one button exists it shows on right side */
 .buttons button {
 	margin-left: auto;
