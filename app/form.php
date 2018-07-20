@@ -8,22 +8,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Formwizard | A boilerplate for multi-step forms</title>
-		<link rel="stylesheet" href="demo.css" />
+		<link rel="stylesheet" href="css/demo.css" />
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
-		<div class="formwizard">
-			<?php
-				if ( isset($_GET["step"]) ) {
-					$step = trim($_GET["step"]);
-					include('steps/' . $step . '.php');
-				}
-			?>
+		<div class="formwizard" data-steps-count="3">
+			<div class="formwizard__forms">
+				<?php
+					if ( isset($_GET["step"]) ) {
+						$step = trim($_GET["step"]);
+						include('steps/' . $step . '.php');
+					}
+				?>
+			</div>
 		</div>
 		<footer>
 			<p>To learn more visit <a href="https://github.com/smohadjer/formwizard/blob/master/README.md">repo on Github</a></p>
 		</footer>
-		<script src="formwizard.js"></script>
+		<script src="js/formwizard.js"></script>
 		<script>
 			(function() {
 				'use strict';
@@ -45,25 +47,42 @@
 						const oldForm = options.oldForm;
 						const newForm = options.newForm;
 						const direction = (options.oldStep < options.newStep) ? 'forward' : 'backward';
+						const slider = this.element.querySelector('.formwizard__forms');
+						const diff = options.newStep - options.oldStep;
 
-						oldForm.addEventListener('transitionend', removeOldForm);
+						slider.addEventListener('transitionend', removeOldForm);
 
-						function removeOldForm(event) {
-							event.target.remove();
-							oldForm.removeEventListener('transitionend', removeOldForm);
+						function removeOldForm() {
+							console.log(options.oldStep, oldForm);
+							//oldForm.remove();
+							slider.removeEventListener('transitionend', removeOldForm);
 						}
 
+						let parentPosLeft = slider.parentNode.offsetLeft;
+						let left = slider.offsetLeft - parentPosLeft;
+						let width = slider.offsetWidth;
+
 						if (direction === 'forward') {
-							oldForm.classList.add('outLeft');
-							newForm.classList.add('outRight');
+							//oldForm.classList.add('outLeft');
+							//newForm.classList.add('outRight');
 
 							// if newForm does't exist in page append it otherwise update it
-							this.element.appendChild(newForm);
+							slider.appendChild(newForm);
 
 							// triggering reflow otherwise removing class won't trigger animation
-							void newForm.offsetWidth;
+							//void newForm.offsetWidth;
 
-							newForm.classList.remove('outRight');
+
+							left = left - width;
+
+							//newForm.classList.remove('outRight');
+							//slider.classList.add('outLeft');
+
+							console.log(left, width);
+
+							//left = parseInt(left) - width;
+
+							slider.style.left = left + 'px';
 
 							/*
 							window.setTimeout(function() {
@@ -71,15 +90,22 @@
 							}, 10);
 							*/
 						} else {
-							oldForm.classList.add('outRight');
-							newForm.classList.add('outLeft');
+							//oldForm.classList.add('outRight');
+							//newForm.classList.add('outLeft');
 
 							// if newForm does't exist in page append it otherwise update it
-							this.element.appendChild(newForm);
+							slider.appendChild(newForm);
+
+							left = left + width;
+
+							slider.style.left = left + 'px';
+
 
 							// triggering reflow otherwise removing class won't trigger animation
-							void newForm.offsetWidth;
-							newForm.classList.remove('outLeft');
+							//void newForm.offsetWidth;
+
+							//newForm.classList.remove('outLeft');
+							//slider.classList.remove('outLeft');
 
 							/*
 							window.setTimeout(function() {
@@ -93,8 +119,8 @@
 						element: document.querySelector('.formwizard'),
 						ajaxFormClass: 'fromwizard__ajaxForm',
 						stepClass: 'formwizard__step',
-						backButtonClass: 'fromwizard__back',
-						callbackUpdateView: myCallback
+						backButtonClass: 'fromwizard__back'
+						//callbackUpdateView: myCallback
 					});
 				});
 			})();

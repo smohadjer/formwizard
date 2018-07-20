@@ -84,23 +84,24 @@ form div + div {
 
 .formwizard {
 	width: 100%;
-	margin: 40px 0 20px;
 	overflow: hidden;
+}
+
+.formwizard__forms {
+	margin: 40px 0 20px;
+	display: flex;
 	position: relative;
-	min-height: 340px;
-}
-
-.formwizard__step {
-	width: 100%;
-	position: absolute;
-	transition: left .5s cubic-bezier(.07,.54,.41,.99);
 	left: 0;
+	transition: left .5s cubic-bezier(.07,.54,.41,.99);
 }
 
-.formwizard__step.outLeft {
+/*
+.formwizard__forms.outLeft {
 	left: -100%;
 }
+*/
 
-.formwizard__step.outRight {
-	left: 100%;
+.formwizard__step {
+	flex-shrink: 0;
+	width: 100%;
 }
