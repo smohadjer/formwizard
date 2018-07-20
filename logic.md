@@ -1,16 +1,30 @@
 Formwizard workflow
 
-* User comes to form.php?step=2, js is enabled
-* Get step count from url and store it in currentStep variable.
-* Read the total steps from data-total-steps and add placeholder form elements to DOM for all missing steps.
+User comes to form.php?step=2 and javascript is enabled. Possible scenarios are:
 
-Possible Scenarios:
 * A) User clicks on back link
 * B) User clicks on next button
 * C) User clicks on browser back or forward button
 * D) User clicks on a link in form navigation
 
----------
+```javascript
+init() {
+	this.currentStep = get value of step query in url;
+	this.stepsCount =  this.element.getAttribute('data-steps-count');
+
+	//Add placeholder for each step to the dom
+	let placeholder = '<form class="formwizard__step"></form>';
+	for (let i = 1; i <= this.stepsCount; i++) {
+		if (i !== this.currentStep) {
+			if (i < this.currentStep) {
+				this.element.prepend(placeholder);
+			} else {
+				this.element.append(placeholder);
+			}
+		}
+	}
+}
+```
 
 A) User clicks on back link
 ```javascript
