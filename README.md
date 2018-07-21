@@ -18,7 +18,6 @@ This boilerplate shows you how to break a large form into a multi-step structure
 
 # Features (not implemented yet)
 - Support for IE11
-- Form navigation allows access to previously completed steps at any time
 
 # Dependencies
 No dependencies. The demo page uses PHP for server-side scripting, but you are free to use any server-side language.
