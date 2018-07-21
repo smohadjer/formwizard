@@ -1,12 +1,14 @@
-//version 0.0.3
+//version 0.0.4
 
-class FormWizard {
+import {getQueryString} from './modules/utilities.js';
+
+export default class FormWizard {
 	constructor(options) {
 		this.element = options.element;
 		this.forms = this.element.querySelector('.formwizard__forms');
-		this.ajaxFormClass = options.ajaxFormClass;
-		this.stepClass = options.stepClass;
-		this.ajaxLinkClass = options.ajaxLinkClass;
+		this.ajaxFormClass = 'fromwizard__ajaxForm';
+		this.stepClass = 'formwizard__step';
+		this.ajaxLinkClass = 'fromwizard__ajaxLink';
 		this.callbackUpdateView = options.callbackUpdateView;
 		this.callbackInit = options.callbackInit;
 		this.currentStep = this.getStep();
@@ -72,7 +74,7 @@ class FormWizard {
 				event.preventDefault();
 
 				const url = event.target.getAttribute('href');
-				const step = self.getQueryString('step', url);
+				const step = getQueryString('step', url);
 
 				self.fetchView(step, url, true);
 			}
@@ -97,13 +99,6 @@ class FormWizard {
 		request.send();
 	}
 
-	getQueryString( field, url ) {
-		var href = url ? url : window.location.href;
-		var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-		var string = reg.exec(href);
-		return string ? string[1] : null;
-	}
-
 	postData(method, url, data) {
 		const self = this;
 		const request = new XMLHttpRequest();
@@ -114,7 +109,7 @@ class FormWizard {
 			var request = this;
 
 			if (request.status >= 200 && request.status < 400) {
-				const step = self.getQueryString('step', request.responseURL);
+				const step = getQueryString('step', request.responseURL);
 				if (step === self.currentStep) {
 					//server has found error and returned the same step with errors in markup
 					//replace form with new form in response.

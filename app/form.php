@@ -9,12 +9,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Formwizard | A boilerplate for multi-step forms</title>
+		<!-- demo styles are optional -->
 		<link rel="stylesheet" href="css/demo.css" />
+
+		<!-- optional styles for slider version -->
 		<link rel="stylesheet" href="css/slider.css" />
+
+		<script type="module">
+			import FormWizard from './js/formwizard.js';
+			import {slide} from './js/modules/utilities.js';
+			import {init} from './js/modules/utilities.js';
+
+			new FormWizard({
+				element: document.querySelector('.formwizard'),
+				callbackInit: init, //use this callback if you need additional initializations for your specfic case
+				callbackUpdateView: slide //use this callback to apply transiton effect when moving from one step to another
+			});
+		</script>
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
-
 		<div class="formwizard" data-steps-count="<?php echo TOTAL_STEPS ?>">
 			<?php include('nav.inc.php'); ?>
 			<div class="formwizard__forms">
@@ -32,35 +46,5 @@
 		<footer>
 			<p>To learn more visit <a href="https://github.com/smohadjer/formwizard/blob/master/README.md">repo on Github</a></p>
 		</footer>
-		<script src="js/formwizard.js"></script>
-		<script src="js/slider.js"></script>
-		<script>
-			(function() {
-				'use strict';
-
-				const html = document.querySelector('html');
-
-				html.classList.add('js');
-
-				function ready(fn) {
-					if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
-						fn();
-					} else {
-						document.addEventListener('DOMContentLoaded', fn);
-					}
-				}
-
-				ready(function() {
-					const formWizard = new FormWizard({
-						element: document.querySelector('.formwizard'),
-						ajaxFormClass: 'fromwizard__ajaxForm',
-						stepClass: 'formwizard__step',
-						ajaxLinkClass: 'fromwizard__ajaxLink',
-						callbackInit: slider.init,
-						callbackUpdateView: slider.slide
-					});
-				});
-			})();
-		</script>
 	</body>
 </html>
