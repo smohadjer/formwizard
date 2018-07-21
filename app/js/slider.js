@@ -5,8 +5,6 @@ slider.init = function() {
 
 	const self = this;
 
-	slider.element = self.element.querySelector('.formwizard__forms');
-
 	self.element.querySelectorAll('.formwizard__step').forEach(function(element) {
 		element.removeAttribute('hidden');
 	});
@@ -27,8 +25,9 @@ slider.init = function() {
 slider.slide = function(options) {
 	'use strict';
 
-	const width = slider.element.offsetWidth;
+	const slider = this.forms;
+	const width = slider.offsetWidth;
 	const left = 0 - width * (options.step-1);
 
-	slider.element.style.left = left + 'px';
+	slider.style.left = left + 'px';
 };
