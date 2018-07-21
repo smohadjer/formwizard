@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	define("TOTAL_STEPS", 3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +14,17 @@
 	</head>
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
+
 		<div class="formwizard" data-steps-count="3">
+			<?php include('nav.inc.php'); ?>
 			<div class="formwizard__forms">
 				<?php
 					if ( isset($_GET["step"]) ) {
 						$step = trim($_GET["step"]);
 						include('steps/' . $step . '.php');
+					} else {
+						header('Location: form.php?step=1');
+						exit;
 					}
 				?>
 			</div>
