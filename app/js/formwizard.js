@@ -1,6 +1,6 @@
 //version 0.0.4
 
-import {getQueryString} from './modules/utilities.js';
+import {getQueryString, postData} from './modules/utilities.js';
 
 export default class FormWizard {
 	constructor(options) {
@@ -65,7 +65,7 @@ export default class FormWizard {
 				const url = form.getAttribute('action');
 				const data = new FormData(form);
 
-				self.postData('POST', url, data);
+				postData(url, data, self.postCallback, self);
 			}
 		});
 
@@ -99,29 +99,21 @@ export default class FormWizard {
 		request.send();
 	}
 
-	postData(method, url, data) {
+	postCallback(request) {
 		const self = this;
-		const request = new XMLHttpRequest();
 
-		request.responseType = 'document';
-		request.open(method, url, true);
-		request.onload = function() {
-			var request = this;
-
-			if (request.status >= 200 && request.status < 400) {
-				const step = getQueryString('step', request.responseURL);
-				if (step === self.currentStep) {
-					//server has found error and returned the same step with errors in markup
-					//replace form with new form in response.
-					self.updateView(step, request, false);
-				} else {
-					self.updateView(step, request, true);
-				}
+		if (request.status >= 200 && request.status < 400) {
+			const step = getQueryString('step', request.responseURL);
+			if (step === self.currentStep) {
+				//server has found error and returned the same step with errors in markup
+				//replace form with new form in response.
+				self.updateView(step, request, false);
 			} else {
-				// We reached our target server, but it returned an error
+				self.updateView(step, request, true);
 			}
-		};
-		request.send(data);
+		} else {
+			// We reached our target server, but it returned an error
+		}
 	}
 
 	updateView(step, request, updateHistory) {

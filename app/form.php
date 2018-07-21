@@ -17,12 +17,11 @@
 
 		<script type="module">
 			import FormWizard from './js/formwizard.js';
-			import {slide} from './js/modules/utilities.js';
-			import {init} from './js/modules/utilities.js';
+			import {slide, init} from './js/modules/utilities.js';
 
 			new FormWizard({
 				element: document.querySelector('.formwizard'),
-				callbackInit: init, //use this callback if you need additional initializations for your specfic case
+				callbackInit: init, //use this callback if you need additional initializations 
 				callbackUpdateView: slide //use this callback to apply transiton effect when moving from one step to another
 			});
 		</script>

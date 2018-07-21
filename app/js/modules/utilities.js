@@ -5,6 +5,17 @@ export function getQueryString(field, url) {
 	return string ? string[1] : null;
 }
 
+export function postData(url, data, callback, self) {
+	const request = new XMLHttpRequest();
+
+	request.responseType = 'document';
+	request.open('POST', url, true);
+	request.onload = function() {
+		callback.call(self, this);
+	};
+	request.send(data);
+}
+
 export function slide(options) {
 	const slider = this.forms;
 	const width = slider.offsetWidth;
