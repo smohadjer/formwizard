@@ -14,6 +14,7 @@
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
 		<div class="formwizard">
+			<?php include('nav.inc.php'); ?>
 			<?php
 				if ( isset($_GET["step"]) ) {
 					$step = trim($_GET["step"]);
