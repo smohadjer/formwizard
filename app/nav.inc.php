@@ -1,4 +1,4 @@
-<ul>
+<ul class="formwizard__nav">
 <?php
 	if ( isset($_GET["step"]) ) {
 		$step = trim($_GET["step"]);
@@ -9,7 +9,7 @@
 		if ( $i >= $step ) {
 			echo "<span>Step {$i}</span>";
 		} else {
-			echo "<a href=\"form.php?step={$i}\">Step {$i}</a>";
+			echo "<a class=\"fromwizard__ajaxLink\" href=\"form.php?step={$i}\">Step {$i}</a>";
 		}
 		echo '</li>';
 	}

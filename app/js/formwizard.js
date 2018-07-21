@@ -6,7 +6,7 @@ class FormWizard {
 		this.forms = this.element.querySelector('.formwizard__forms');
 		this.ajaxFormClass = options.ajaxFormClass;
 		this.stepClass = options.stepClass;
-		this.backButtonClass = options.backButtonClass;
+		this.ajaxLinkClass = options.ajaxLinkClass;
 		this.callbackUpdateView = options.callbackUpdateView;
 		this.callbackInit = options.callbackInit;
 		this.currentStep = this.getStep();
@@ -68,7 +68,7 @@ class FormWizard {
 		});
 
 		self.element.addEventListener('click', function(event) {
-			if (event.target.classList.contains(self.backButtonClass)) {
+			if (event.target.classList.contains(self.ajaxLinkClass)) {
 				event.preventDefault();
 
 				const url = event.target.getAttribute('href');
@@ -133,8 +133,10 @@ class FormWizard {
 		const self = this;
 		const steps = self.forms.querySelectorAll('.' + self.stepClass);
 		const newChild = request.response.querySelector(`.${self.stepClass}`);
+		const newFormNav = request.response.querySelector('.formwizard__nav');
 
 		self.forms.replaceChild(newChild, steps[step-1]);
+		self.element.replaceChild(newFormNav, self.element.querySelector('.formwizard__nav'));
 
 		if (typeof self.callbackUpdateView === 'function') {
 			self.callbackUpdateView({

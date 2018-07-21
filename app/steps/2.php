@@ -10,7 +10,7 @@
 		<input id="phone" name="phone" type="tel" required="required" value="<?= isset($_SESSION['phone']) ? $_SESSION['phone'] : '' ?>" />
 	</div>
 	<div class="buttons">
-		<a class="fromwizard__back" href="form.php?step=1">Back</a>
+		<a class="fromwizard__ajaxLink" href="form.php?step=1">Back</a>
 		<button>Next</button>
 	</div>
 </form>

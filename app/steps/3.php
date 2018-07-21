@@ -15,8 +15,7 @@
 		<label for="confirm">I agree that above information is accurate!</label>
 	</div>
 	<div class="buttons">
-		<a class="fromwizard__back" href="form.php?step=2">Back</a>
-		<a class="fromwizard__back" href="form.php?step=1">Go to step 1</a>
+		<a class="fromwizard__ajaxLink" href="form.php?step=2">Back</a>
 		<button>Submit</button>
 	</div>
 </form>

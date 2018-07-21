@@ -15,7 +15,7 @@
 	<body>
 		<h1>A boilerplate for multi-step single-page forms</h1>
 
-		<div class="formwizard" data-steps-count="3">
+		<div class="formwizard" data-steps-count="<?php echo TOTAL_STEPS ?>">
 			<?php include('nav.inc.php'); ?>
 			<div class="formwizard__forms">
 				<?php
@@ -55,7 +55,7 @@
 						element: document.querySelector('.formwizard'),
 						ajaxFormClass: 'fromwizard__ajaxForm',
 						stepClass: 'formwizard__step',
-						backButtonClass: 'fromwizard__back',
+						ajaxLinkClass: 'fromwizard__ajaxLink',
 						callbackInit: slider.init,
 						callbackUpdateView: slider.slide
 					});
