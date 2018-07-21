@@ -1,16 +1,30 @@
 Formwizard workflow
 
-* User comes to form.php?step=2, js is enabled
-* Get step count from url and store it in currentStep variable.
-* Read the total steps from data-total-steps and add placeholder form elements to DOM for all missing steps.
+User comes to form.php?step=2 and javascript is enabled. Possible scenarios are:
 
-Possible Scenarios:
 * A) User clicks on back link
 * B) User clicks on next button
 * C) User clicks on browser back or forward button
 * D) User clicks on a link in form navigation
 
----------
+```javascript
+init() {
+	this.currentStep = get value of step query in url;
+	this.stepsCount =  this.element.getAttribute('data-steps-count');
+
+	//Add placeholder for each step to the dom
+	let placeholder = '<form class="formwizard__step"></form>';
+	for (let i = 1; i <= this.stepsCount; i++) {
+		if (i !== this.currentStep) {
+			if (i < this.currentStep) {
+				this.element.prepend(placeholder);
+			} else {
+				this.element.append(placeholder);
+			}
+		}
+	}
+}
+```
 
 A) User clicks on back link
 ```javascript
@@ -45,13 +59,13 @@ fetchView(step, true);
 function postData() {
 	request.open('POST', 'form.getAttribute("action")', true);
 	request.onload = function() {
-		var response = this;
-		var step = response.querySelector('form').getAttribute('data-step');
+		var request = this;
+		get step from request.responseURL;
 		if (step === currentStep) {
 			//server has found error and returned the same step with errors in markup
 			replace form with new form in response.
 		} else {
-			updateView(step, response, true);
+			updateView(step, request.response, true);
 		}
 	}
 }
@@ -59,12 +73,13 @@ function postData() {
 function fetchView(step, updateHistory) {
 	request.open('GET', 'form.php?step='+step, true);
 	request.onload = function() {
-		updateView(step, response, updateHistory);
+		var request = this;
+		updateView(step, request.response, updateHistory);
 	}
 }
 
 function updateView(step, response, updateHistory) {
-	replace form with index of step -1 with form in response
+	replace form with index of currentstep-1 with form in response
 	remove class "current-step" from all forms and put it on current form
 	if (slider) {
 		goToSlide(step);

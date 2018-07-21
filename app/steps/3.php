@@ -16,6 +16,7 @@
 	</div>
 	<div class="buttons">
 		<a class="fromwizard__back" href="form.php?step=2">Back</a>
+		<a class="fromwizard__back" href="form.php?step=1">Go to step 1</a>
 		<button>Submit</button>
 	</div>
 </form>
