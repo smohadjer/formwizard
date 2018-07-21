@@ -2,6 +2,13 @@ body {
 	margin: 0 20px;
 }
 
+@media screen and (min-width: 900px) {
+	body {
+		margin: 0 auto;
+		width: 860px;
+	}
+}
+
 footer {
 	border-top: solid 1px #666;
 	margin-top: 40px;
@@ -11,78 +18,71 @@ h2 {
 	margin-top: 0;
 }
 
-@media screen and (min-width: 900px) {
-	body {
-		margin: 0 auto;
-		width: 860px;
-	}
-}
-
-form input {
+.formwizard form input {
 	padding: 5px;
 	font-size: 16px;
 }
 
-form .error {
+.formwizard form .error {
 	color: red;
 }
 
-form input:invalid {
+.formwizard form input:invalid {
 	border: solid 1px salmon;
 }
 
-form input[type=text],
-form input[type=email] {
+.formwizard form input[type=text],
+.formwizard form input[type=email] {
 	min-width: 200px;
 }
 
-form label.required::after {
+.formwizard form label.required::after {
 	content: "*";
 	color: #999;
 	margin-left: 3px;
 }
 
-form fieldset {
+.formwizard form fieldset {
 	padding: 20px;
 	border-radius: 5px;
 	border: dashed #999 1px;
 }
 
-form button, .buttons a {
+.formwizard form button, .buttons a {
 	font-size: 20px;
 }
 
-form label {
+.formwizard form label {
 	margin-right: 10px;
 }
 
-form div + div {
+.formwizard form div + div {
 	margin-top: 10px;
 }
 
-.review {
+.formwizard .review {
 	margin-bottom: 20px;
 	background: #ccc;
 	padding: 20px;
 }
 
-.review p {
+.formwizard .review p {
 	margin: 0 0 10px;
 }
 
-.buttons {
+.formwizard .buttons {
 	padding-top: 20px;
 	margin-top: 40px;
 	display: flex;
 	justify-content: space-between;
 }
 
-.buttons a + a {
+.formwizard .buttons a + a {
 	margin-left: 10px;
 }
 
 /* so if only one button exists it shows on right side */
-.buttons button {
+.formwizard .buttons button {
 	margin-left: auto;
 }
 
