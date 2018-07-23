@@ -1,4 +1,8 @@
 <?php
+	if ( !isset($_GET["step"]) ) {
+		header('Location: form.php?step=1');
+		exit;
+	}
 	session_start();
 	define("TOTAL_STEPS", 3);
 ?>
@@ -21,7 +25,7 @@
 
 			new FormWizard({
 				element: document.querySelector('.formwizard'),
-				callbackInit: init, //use this callback if you need additional initializations 
+				callbackInit: init, //use this callback if you need additional initializations
 				callbackUpdateView: slide //use this callback to apply transiton effect when moving from one step to another
 			});
 		</script>
@@ -32,13 +36,8 @@
 			<?php include('nav.inc.php'); ?>
 			<div class="formwizard__forms">
 				<?php
-					if ( isset($_GET["step"]) ) {
-						$step = trim($_GET["step"]);
-						include('steps/' . $step . '.php');
-					} else {
-						header('Location: form.php?step=1');
-						exit;
-					}
+					$step = trim($_GET["step"]);
+					include('steps/' . $step . '.php');
 				?>
 			</div>
 		</div>
