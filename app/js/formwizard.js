@@ -16,7 +16,6 @@ export default class FormWizard {
 
 		this.element.classList.add('js');
 
-		this.initDOM();
 		this.addEventListeners();
 
 		window.history.replaceState({
@@ -31,27 +30,7 @@ export default class FormWizard {
 
 	getStep() {
 		const urlParams = new URLSearchParams(window.location.search);
-
 		return parseInt(urlParams.get('step'));
-	}
-
-	initDOM() {
-		const self = this;
-
-		//insert a placeholder for each step of the form into DOM
-		for (let i = 1; i <= self.stepsCount; i++) {
-			const placeholder = document.createElement('form');
-			placeholder.setAttribute('class', 'formwizard__step');
-			placeholder.setAttribute('hidden', 'hidden');
-
-			if (i !== self.currentStep) {
-				if (i < self.currentStep) {
-					self.forms.insertBefore(placeholder, self.forms.firstChild);
-				} else {
-					self.forms.appendChild(placeholder);
-				}
-			}
-		}
 	}
 
 	addEventListeners() {

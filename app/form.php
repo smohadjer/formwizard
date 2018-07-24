@@ -21,7 +21,9 @@
 
 		<script type="module">
 			import FormWizard from './js/formwizard.js';
-			import {slide, init} from './js/modules/utilities.js';
+
+			//optional module for slide effect -->
+			import {slide, init} from './js/modules/slide.js';
 
 			new FormWizard({
 				element: document.querySelector('.formwizard'),
