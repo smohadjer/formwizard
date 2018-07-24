@@ -6,8 +6,10 @@
 
 	for ($i=1; $i <= TOTAL_STEPS; $i++) {
 		echo '<li>';
-		if ( $i >= $step ) {
+		if ( $i > $step ) {
 			echo "<span>Step {$i}</span>";
+		} else if ($i == $step) {
+			echo "<span class=\"selected\">Step {$i}</span>";
 		} else {
 			echo "<a class=\"fromwizard__ajaxLink\" href=\"form.php?step={$i}\">Step {$i}</a>";
 		}

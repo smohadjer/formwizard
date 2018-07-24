@@ -104,3 +104,12 @@ h2 {
 	margin-right: 20px;
 	color: #999;
 }
+
+.formwizard__nav li span {
+	padding: 10px;
+}
+
+.formwizard__nav li span.selected {
+	background: #ccc;
+	color: #333;
+}
