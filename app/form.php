@@ -4,7 +4,7 @@
 		exit;
 	}
 	session_start();
-	define("TOTAL_STEPS", 3);
+	define("TOTAL_STEPS", 4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
