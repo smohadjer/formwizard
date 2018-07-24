@@ -6,6 +6,8 @@
 	}
 
 	$error = false;
+	$thisStep = 'form.php?step=' . $step;
+	$nextStep = 'form.php?step=' . ($step + 1);
 
 	switch ($step) {
 		case 1:
@@ -27,13 +29,22 @@
 				$_SESSION["phone"] = $_POST['phone'];
 			}
 			break;
+		case 3:
+			if ( isset($_POST['code']) && isset($_POST['qty']) ) {
+				$_SESSION["items"][] = array('code' => $_POST['code'],
+					'qty' => $_POST['qty']);
+				$nextStep = $thisStep;
+			} elseif ( count($_POST) > 0 ) {
+				//$error = true;
+			}
+			break;
 	}
 
 	$_SESSION["error"] = $error;
 	if ($error) {
-		header('Location: form.php?step=' . $step);
+		header("Location: {$thisStep}");
 	} else {
-		header('Location: form.php?step=' . ++$step);
+		header("Location: {$nextStep}");
 	}
 	exit;
 ?>
