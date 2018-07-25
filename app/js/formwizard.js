@@ -1,18 +1,21 @@
-//version 0.0.4
+//version 0.0.5
 
 import {getQueryString, postData} from './modules/utilities.js';
 
 export default class FormWizard {
 	constructor(options) {
 		this.element = options.element;
-		this.forms = this.element.querySelector('.formwizard__forms');
+		this.callback = options.callback;
+
+		//selectors
 		this.ajaxFormClass = 'fromwizard__ajaxForm';
-		this.stepClass = 'formwizard__step';
 		this.ajaxLinkClass = 'fromwizard__ajaxLink';
-		this.callbackUpdateView = options.callbackUpdateView;
-		this.callbackInit = options.callbackInit;
+		this.stepSelector = '.formwizard__step';
+		this.navSelector = '.formwizard__nav';
+
+		this.forms = this.element.querySelector('.formwizard__forms');
+
 		this.currentStep = this.getStep();
-		this.stepsCount = parseInt(this.element.getAttribute('data-steps-count'));
 
 		this.element.classList.add('js');
 
@@ -22,10 +25,6 @@ export default class FormWizard {
 			step: this.currentStep,
 			url: location.href
 		}, '', location.href);
-
-		if (typeof this.callbackInit === 'function') {
-			this.callbackInit();
-		}
 	}
 
 	getStep() {
@@ -83,38 +82,39 @@ export default class FormWizard {
 
 		if (request.status >= 200 && request.status < 400) {
 			const step = getQueryString('step', request.responseURL);
+			let updateHistory = true;
 
+			//this can happen if sever finds validation error and returns the same page again
 			if (request.responseURL === window.location.href) {
-				//server has found error and returned the same step with errors in markup
-				//replace form with new form in response.
-				self.updateView(step, request, false);
-			} else {
-				self.updateView(step, request, true);
+				updateHistory = false;
 			}
 
+			self.updateView(step, request, updateHistory);
 		} else {
-			console.warn('request failed, ', request.status);
+			console.warn('Request failed with status: ', request.status);
 		}
 	}
 
 	updateView(step, request, updateHistory) {
 		const self = this;
-		const steps = self.forms.querySelectorAll('.' + self.stepClass);
-		const newChild = request.response.querySelector(`.${self.stepClass}`);
-		const newFormNav = request.response.querySelector('.formwizard__nav');
+		const oldForm = self.forms.querySelector(self.stepSelector);
+		const newForm = request.response.querySelector(self.stepSelector);
+		const newNav = request.response.querySelector(self.navSelector);
+		const oldNav = self.element.querySelector(self.navSelector)
 
-		self.forms.replaceChild(newChild, steps[step-1]);
-		self.element.replaceChild(newFormNav, self.element.querySelector('.formwizard__nav'));
+		//update navigation
+		if (newNav) {
+			self.element.replaceChild(newNav, oldNav);
+		}
 
-		if (typeof self.callbackUpdateView === 'function') {
-			self.callbackUpdateView({
-				step: step
+		if (typeof self.callback === 'function') {
+			self.callback({
+				step: step,
+				newForm: newForm,
+				oldForm: oldForm
 			});
 		} else {
-			if (step !== self.currentStep) {
-				steps[self.currentStep-1].setAttribute('hidden', 'hidden');
-				steps[step-1].removeAttribute('hidden');
-			}
+			self.forms.replaceChild(newForm, oldForm);
 		}
 
 		self.currentStep = step;

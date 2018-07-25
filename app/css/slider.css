@@ -7,7 +7,11 @@
 	display: flex;
 	position: relative;
 	left: 0;
-	transition: left .5s cubic-bezier(.07,.54,.41,.99);
+	transition: left .75s cubic-bezier(.07,.54,.41,.99);
+}
+
+.js.formwizard .formwizard__forms.noTransition {
+	transition: none;
 }
 
 .js.formwizard .formwizard__step {

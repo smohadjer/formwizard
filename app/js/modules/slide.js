@@ -1,42 +1,37 @@
 export function slide(options) {
-	const slider = this.forms;
-	const width = slider.offsetWidth;
-	const left = 0 - width * (options.step-1);
-
-	slider.style.left = left + 'px';
-}
-
-export function init() {
 	const self = this;
+	const step = options.step;
+	const newForm = options.newForm;
+	const oldForm = options.oldForm;
+	const slider = self.forms;
+	const width = slider.offsetWidth;
 
-	//insert a placeholder for each step of the form into DOM
-	for (let i = 1; i <= self.stepsCount; i++) {
-		const placeholder = document.createElement('form');
-		placeholder.setAttribute('class', 'formwizard__step');
-		placeholder.setAttribute('hidden', 'hidden');
+	let left = 0;
 
-		if (i !== self.currentStep) {
-			if (i < self.currentStep) {
-				self.forms.insertBefore(placeholder, self.forms.firstChild);
-			} else {
-				self.forms.appendChild(placeholder);
-			}
-		}
+	if (step < self.currentStep) {
+		//add new form before current form
+		slider.insertBefore(newForm, oldForm);
+		slider.classList.add('noTransition');
+		left = -width;
+		slider.style.left = left + 'px';
+		let tmp = slider.offsetWidth; //force repaint
+		slider.classList.remove('noTransition');
+		slider.style.left = 0 + 'px';
+	} else if (step === self.currentStep) {
+		slider.replaceChild(newForm, oldForm);
+	} else {
+		//add new form after current form
+		slider.appendChild(newForm);
+		left = -width;
+		slider.style.left = left + 'px';
 	}
-	
-	self.element.querySelectorAll('.formwizard__step').forEach(function(element) {
-		element.removeAttribute('hidden');
-	});
 
-	if (self.currentStep !== 1) {
-		slide.call(self, {
-			step: self.currentStep
-		});
-	}
-
-	window.addEventListener('resize', function(event) {
-		slide.call(self, {
-			step: self.getStep()
-		});
+	slider.addEventListener('transitionend', function(event) {
+		slider.classList.add('noTransition');
+		let tmp = slider.offsetWidth; //force repaint
+		oldForm.remove();
+		slider.style.left = 0;
+		tmp = slider.offsetWidth; //force repaint
+		slider.classList.remove('noTransition');
 	});
-};
+}
