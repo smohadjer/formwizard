@@ -120,7 +120,6 @@ export default class FormWizard {
 		self.currentStep = step;
 
 		if (updateHistory) {
-			console.log(request.responseURL);
 			window.history.pushState({
 				step: step,
 				url: request.responseURL
