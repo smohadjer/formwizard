@@ -83,15 +83,17 @@ export default class FormWizard {
 
 		if (request.status >= 200 && request.status < 400) {
 			const step = getQueryString('step', request.responseURL);
-			if (step === self.currentStep) {
+
+			if (request.responseURL === window.location.href) {
 				//server has found error and returned the same step with errors in markup
 				//replace form with new form in response.
 				self.updateView(step, request, false);
 			} else {
 				self.updateView(step, request, true);
 			}
+
 		} else {
-			// We reached our target server, but it returned an error
+			console.warn('request failed, ', request.status);
 		}
 	}
 
@@ -118,6 +120,7 @@ export default class FormWizard {
 		self.currentStep = step;
 
 		if (updateHistory) {
+			console.log(request.responseURL);
 			window.history.pushState({
 				step: step,
 				url: request.responseURL
