@@ -105,11 +105,12 @@ h2 {
 	color: #999;
 }
 
-.formwizard__nav li span {
+.formwizard__nav li span,
+.formwizard__nav li a {
 	padding: 10px;
 }
 
-.formwizard__nav li span.selected {
+.formwizard__nav li .selected {
 	background: #ccc;
 	color: #333;
 }
