@@ -100,7 +100,13 @@ export default class FormWizard {
 		const oldForm = self.forms.querySelector(self.stepSelector);
 		const newForm = request.response.querySelector(self.stepSelector);
 		const newNav = request.response.querySelector(self.navSelector);
-		const oldNav = self.element.querySelector(self.navSelector)
+		const oldNav = self.element.querySelector(self.navSelector);
+		const newTitle = request.response.querySelector('title');
+
+		//update page title
+		if (newTitle) {
+			document.querySelector('title').textContent = newTitle.textContent;
+		}
 
 		//update navigation
 		if (newNav) {
