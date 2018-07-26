@@ -9,6 +9,7 @@
 	?>
 			<h2>Step 3 - sub-step 2</h2>
 			<div>
+				<input type="hidden" name="nextstep" value="3" />
 				<label class="required" for="code">Item Code:</label>
 				<input type="text" id="code" name="code" required="required" value="" />
 			</div>
@@ -25,22 +26,25 @@
 	?>
 
 			<h2>Step 3 - sub-step 1</h2>
-			<table border="1">
-				<tr>
-					<th>Item Code</th>
-					<th>Item Quantity</th>
-				</tr>
-	<?php
-		if ( isset($_SESSION["items"]) ) {
-			foreach ( $_SESSION["items"] as $item ) {
-				echo "<tr><td>{$item['code']}</td><td>{$item['qty']}</td></tr>";
+			<div>
+				<input type="hidden" name="nextstep" value="4" />
+				<table border="1">
+					<tr>
+						<th>Item Code</th>
+						<th>Item Quantity</th>
+					</tr>
+		<?php
+			if ( isset($_SESSION["items"]) ) {
+				foreach ( $_SESSION["items"] as $item ) {
+					echo "<tr><td>{$item['code']}</td><td>{$item['qty']}</td></tr>";
+				}
 			}
-		}
-	?>
-			</table>
-			<p><a class="fromwizard__ajaxLink" href="form.php?step=3&mode=add">Add Item</a></p>
+		?>
+				</table>
+				<p><a class="fromwizard__ajaxLink" href="form.php?step=3&mode=add">Add Item</a></p>
+			</div>
 			<div class="buttons">
-				<a class="fromwizard__ajaxLink" href="form.php?step=2">Back</a>
+				<a class="fromwizard__ajaxLink" href="form.php?step=2.5">Back</a>
 				<button>Next</button>
 			</div>
 	<?php

@@ -29,7 +29,7 @@ export default class FormWizard {
 
 	getStep() {
 		const urlParams = new URLSearchParams(window.location.search);
-		return parseInt(urlParams.get('step'));
+		return parseFloat(urlParams.get('step'));
 	}
 
 	addEventListeners() {

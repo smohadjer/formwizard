@@ -5,9 +5,13 @@
 		$step = trim($_GET["step"]);
 	}
 
+	if ( isset($_POST["nextstep"]) ) {
+		$nextstep = ($_POST["nextstep"]);
+	}
+
 	$error = false;
 	$thisStep = 'form.php?step=' . $step;
-	$nextStep = 'form.php?step=' . ($step + 1);
+	$nextStep = 'form.php?step=' . $nextstep;
 
 	switch ($step) {
 		case 1:
@@ -27,6 +31,11 @@
 		case 2:
 			if ( isset($_POST['phone']) ) {
 				$_SESSION["phone"] = $_POST['phone'];
+			}
+			break;
+		case 2.5:
+			if ( isset($_POST['fax']) ) {
+				$_SESSION["fax"] = $_POST['fax'];
 			}
 			break;
 		case 3:

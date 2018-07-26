@@ -6,6 +6,7 @@
 		}
 	?>
 	<div>
+		<input type="hidden" name="nextstep" value="2.5" />
 		<label class="required" for="phone">Phone:</label>
 		<input id="phone" name="phone" type="tel" required="required" value="<?= isset($_SESSION['phone']) ? $_SESSION['phone'] : '' ?>" />
 	</div>

@@ -6,6 +6,7 @@
 		}
 	?>
 	<div>
+		<input type="hidden" name="nextstep" value="2" />
 		<label class="required" for="name">Name:</label>
 		<input type="text" id="name" name="name" required="required" placeholder="longer than two letters"
 			value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : '' ?>" />

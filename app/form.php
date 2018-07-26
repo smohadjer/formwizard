@@ -38,7 +38,7 @@
 			<div class="formwizard__forms">
 				<?php
 					$step = trim($_GET["step"]);
-					include('steps/' . $step . '.php');
+					include('steps/' . $step . '/step.php');
 				?>
 			</div>
 		</div>
