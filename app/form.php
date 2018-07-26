@@ -4,7 +4,7 @@
 		exit;
 	}
 	session_start();
-	define("TOTAL_STEPS", 4);
+	$allSteps = array(1, 2, 2.5, 3, 4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
