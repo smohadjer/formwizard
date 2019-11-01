@@ -4,14 +4,14 @@
 		$step = trim($_GET["step"]);
 	}
 
-	for ($i=1; $i <= TOTAL_STEPS; $i++) {
+	for ($i=0; $i < count($allSteps); $i++) {
 		echo '<li>';
-		if ( $i > $step ) {
-			echo "<span>Step {$i}</span>";
-		} else if ($i == $step) {
-			echo "<span class=\"selected\">Step {$i}</span>";
+		if ( $allSteps[$i] > $step ) {
+			echo "<span>Step {$allSteps[$i]}</span>";
+		} else if ($allSteps[$i] == $step) {
+			echo "<span class=\"selected\">Step {$allSteps[$i]}</span>";
 		} else {
-			echo "<a class=\"fromwizard__ajaxLink\" href=\"form.php?step={$i}\">Step {$i}</a>";
+			echo "<a class=\"fromwizard__ajaxLink\" href=\"form.php?step={$allSteps[$i]}\">Step {$allSteps[$i]}</a>";
 		}
 		echo '</li>';
 	}

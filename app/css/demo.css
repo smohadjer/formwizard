@@ -92,25 +92,49 @@ h2 {
 
 .formwizard__nav {
 	margin: 0;
-	padding: 10px 0;
-	border: solid 1px #ccc;
-	border-left: 0;
-	border-right: 0;
+	padding: 0;
 }
 
-.formwizard__nav li {
-	list-style: none;
-	display: inline-block;
-	margin-right: 20px;
-	color: #999;
+@media (max-width: 767px) {
+	.formwizard__nav li {
+		border-bottom: solid 1px #ccc;
+	}
+
+	.formwizard__nav li span,
+	.formwizard__nav li a {
+		display: block;
+		padding: 5px;
+	}
+
+	.formwizard__nav li .selected {
+		background: #ccc;
+		color: #333;
+	}
 }
 
-.formwizard__nav li span,
-.formwizard__nav li a {
-	padding: 10px;
-}
+@media (min-width: 768px) {
+	.formwizard__nav {
+		margin: 0;
+		padding: 10px 0;
+		border: solid 1px #ccc;
+		border-left: 0;
+		border-right: 0;
+	}
 
-.formwizard__nav li .selected {
-	background: #ccc;
-	color: #333;
+	.formwizard__nav li {
+		list-style: none;
+		display: inline-block;
+		margin-right: 20px;
+		color: #999;
+	}
+
+	.formwizard__nav li span,
+	.formwizard__nav li a {
+		padding: 10px;
+	}
+
+	.formwizard__nav li .selected {
+		background: #ccc;
+		color: #333;
+	}
 }
