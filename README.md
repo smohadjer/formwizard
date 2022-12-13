@@ -3,9 +3,6 @@ This is a boilerplate for building multi-step forms as a single page app. The ap
 
 This boilerplate shows you how to break a large form into a multi-step structure that works with or without js, that can support list/add item pattern, review pattern, decision tree all from a centralized code base (so you don't repeat code on both server-side and client-side). Navigating through form steps by default is sequential, meaning that you can only access steps whose previous steps have been completed. However you can bypass this restriction by setting data-navigation="random" on the form element.
 
-# Demo
-- http://sandbox.saeidmohadjer.com/formwizard/form.php
-
 # Features
 - Form remains functional even if javascript is disabled or throws errors
 - It does NOT break browser back button 
